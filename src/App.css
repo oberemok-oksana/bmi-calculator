@@ -33,9 +33,14 @@
   padding: 5px;
   border: 1px solid rgb(145, 85, 93);
   cursor: pointer;
+  text-transform: uppercase;
+  font-weight: 700;
 }
 .button:hover {
   transform: scale(1.2);
+}
+.button:active {
+  transform: scale(1.1);
 }
 
 .table {
