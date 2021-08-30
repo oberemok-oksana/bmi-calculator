@@ -3,14 +3,43 @@ import "./App.css";
 import Table from "./Table";
 
 function App() {
+  const [weight, setWeight] = React.useState("");
+  const [height, setHeight] = React.useState("");
+  const [BMI, setBMI] = React.useState(null);
+
+  function typeWeight(e) {
+    setWeight(e.target.value);
+  }
+  function typeHeight(e) {
+    setHeight(e.target.value);
+  }
+  function countBMI() {
+    const heightInMeter = height / 100;
+    const bmi =
+      parseInt((weight / (heightInMeter * heightInMeter)) * 100) / 100;
+    setBMI(bmi);
+  }
+
   return (
     <div className="App">
       <div className="inputWrapper">
-        <input className="input" placeholder="Weight" />
-        <input className="input" placeholder="Height" />
+        <input
+          value={weight}
+          onChange={typeWeight}
+          className="input"
+          placeholder="Weight"
+        />
+        <input
+          value={height}
+          onChange={typeHeight}
+          className="input"
+          placeholder="Height"
+        />
       </div>
-      <button className="button">Count</button>
-      <p>Your BMI: .</p>
+      <button onClick={countBMI} className="button">
+        Count
+      </button>
+      {BMI ? <p>Your BMI: {BMI} </p> : <p>Enter your data to count a BMI</p>}
       <Table />
     </div>
   );
